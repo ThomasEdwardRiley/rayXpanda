@@ -19,6 +19,6 @@ Install
 
 Run the ``setup.py`` script::
 
-    CC=gcc python setup.py install
+    CC=gcc python setup.py install [--user]
 
 You require Cython to compile to C, and then the extensions will be compiled.
