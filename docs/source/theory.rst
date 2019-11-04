@@ -139,7 +139,7 @@ generated as follows. First we pursued the higher-order expansion terms given
 by Beloborodov (2002) and verified them. We then proceeded symbolically\ [#]_
 to generate terms up to :math:`\mathcal{O}(x^{31})`. The resulting polynomial
 in :math:`x` has clear pattern in the structure of the coefficients, which are
-themselves polynomials in :math:`u`, where the leading order scales with the
+themselves polynomials in :math:`u`, where the order scales with the
 power of :math:`x`. For example, to truncate at :math:`\mathcal{O}(x^{7})`
 yields, letting :math:`z\mathrel{:=}x/(1-u)`:
 
@@ -164,7 +164,7 @@ To generate the Cython :mod:`~.Inversion` extension module, it was necessary
 to reverse the polynomial to obtain a polynomial for :math:`x(y;u)`. Series
 reversion requires a larger number of terms in powers of :math:`y` to recover
 the accuracy of the :math:`y(x;u)` polynomial truncated at
-:math:`\mathcal{O}(x^{31})`. We push the computation to leading order of
+:math:`\mathcal{O}(x^{31})`. We push the computation to order of
 :math:`\mathcal{O}(y^{61})`.
 
 Both extension modules are statically typed at ``double`` precision: the
