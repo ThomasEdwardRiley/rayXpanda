@@ -30,7 +30,7 @@ The deflection integral has no known closed-form solution. Exact solutions
 are approached via numerical quadrature with a variable transformation
 to make the integral domain compact and remove the integrand divergence as
 :math:`r\to r_{c}^{+}`, where :math:`r_{c}>3r_{s}/2` is the turning point
-:math:`dr/d\lambda=0` of a scattering ray, and is :math:`r_{c}=r_{c}(b)`.
+:math:`dr/d\lambda=0` of a scattering ray, and is :math:`r_{c}=r_{c}(b)`.\ [#]_
 
 However, `Beloborodov (2002)`_ showed that if one lets :math:`y=1-\cos\psi` and
 :math:`x=1-\cos\alpha`, then the :math:`\mathcal{O}(x^{2})` term of the
@@ -258,6 +258,8 @@ number representation and operation inadequacies, and to the total number of
 floating point operations.
 
 .. rubric:: Footnotes
+
+.. [#] In units of the gravitational radius: :math:`r_{c}(b)=\frac{2b}{\sqrt{3}}\cos\left[\frac{1}{3}\tan^{-1}\sqrt{\frac{b^{2}}{27} - 1} - \frac{\pi}{3}\right]`, where :math:`b` is also in units of the gravitational radius.
 
 .. [#] In the absence of opaque surfaces that obscure images, as is the case
        for a neutron star.
