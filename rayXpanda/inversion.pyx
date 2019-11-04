@@ -26,7 +26,7 @@ def invert(double cos_psi, double u):
             1.0 + pow(u, 2)*(y*Q + P))
 
 cdef public void c_invert(double cos_psi, double u,
-                         double *cos_alpha, double *deriv):
+                          double *cos_alpha, double *deriv):
 
     cdef double y = 1.0 - cos_psi
     cdef double P = 0.0

@@ -69,7 +69,7 @@ exact function is given by
 
 where :math:`\Theta(\ldots)` denotes the Heaviside function.
 
-Howver, series truncation results in a lack of curvature, and for a subset of
+However, series truncation results in a lack of curvature, and for a subset of
 the nominal domain :math:`\alpha\in[0,\pi/2]`, values :math:`y>2`, which
 invalidates the definition :math:`y=1-\cos\psi`. The approximation is valid
 only for *primary images*, defined by deflections :math:`\psi<\pi`, and the
@@ -97,7 +97,7 @@ relation
     x(y;u) = (1-u)y+\mathcal{O}(y^{3})
 
 is desired, together with the convergence of ray bundles, which is encoded
-in the derivativ
+in the derivative
 
 .. math::
 
