@@ -24,3 +24,17 @@ Run the ``setup.py`` script::
     CC=gcc python setup.py install [--user]
 
 You require Cython to compile to C, and then the extensions will be compiled.
+
+If you wish to call the C functions from another Cython module, use::
+
+    from rayXpanda.deflection cimport c_deflect
+    from rayXpanda.inversion cimport c_invert
+
+If you wish to call the C functions from a C program, use::
+
+    #include "deflection.h"
+    #include "inversion.h"
+
+and add the ``rayXpanda`` source directory to the include path for compilation
+of your C program. When linking, point to the directory containing the shared
+objects that were compiled when ``rayXpanda`` was installed.

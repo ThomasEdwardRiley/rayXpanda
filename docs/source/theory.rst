@@ -96,16 +96,17 @@ relation
 
     x(y;u) = (1-u)y+\mathcal{O}(y^{3})
 
-is desired, together with the convergence of ray bundles, given
-by
+is desired, together with the convergence of ray bundles, which is encoded
+in the derivativ
 
 .. math::
 
     \frac{\partial\cos\alpha}{\partial\cos\psi} = \frac{\partial x}{\partial y}
                                               = 1-u + \mathcal{O}(y^{2});
 
-the convergence in the Beloborodov (2002) approximation is constant and
-performs poorly in effectively all contexts.
+the derivative in the Beloborodov (2002) approximation is constant and
+performs poorly in effectively all contexts. Hereafter we simply call this
+derivative that encodes convergence as *the convergence*.
 
 These truncated series have the desirable property that they
 are entirely inexpensive to evaluate and do not require numerical
@@ -140,17 +141,19 @@ by Beloborodov (2002) and verified them. We then proceeded symbolically\ [#]_
 to generate terms up to :math:`\mathcal{O}(x^{31})`. The resulting polynomial
 in :math:`x` has clear pattern in the structure of the coefficients, which are
 themselves polynomials in :math:`u`, where the order scales with the
-power of :math:`x`. For example, to truncate at :math:`\mathcal{O}(x^{7})`
-yields, letting :math:`z\mathrel{:=}x/(1-u)`:
+power of :math:`x`. For example, truncating at :math:`\mathcal{O}(x^{7})`
+yields
 
 .. math::
     \begin{aligned}
     \frac{y(x;u)}{u^{2}} = \frac{z}{u^{2}} &- \frac{z^{3}}{112}\\
-               &+\frac{z^{4}(3u^{2} - 5)}{672}\\
+               &+\frac{z^{4}(3u - 5)}{672}\\
                &-\frac{z^{5}(2673u^2 - 8008u + 6461)}{1345344}\\
                &+\frac{z^{6}(9372u^3 - 39347u^2 + 57876u - 30324)}{10762752}\\
-               &+\mathcal{O}(x^{7}).
+               &+\mathcal{O}(x^{7}),
     \end{aligned}
+
+where :math:`z\mathrel{:=}x/(1-u)`.
 
 The polynomial in :math:`x` requires :math:`\mathcal{O}(10^{3})` floating
 point operations to evaluate. We generated the Cython :mod:`~.Deflection`
@@ -164,7 +167,7 @@ To generate the Cython :mod:`~.Inversion` extension module, it was necessary
 to reverse the polynomial to obtain a polynomial for :math:`x(y;u)`. Series
 reversion requires a larger number of terms in powers of :math:`y` to recover
 the accuracy of the :math:`y(x;u)` polynomial truncated at
-:math:`\mathcal{O}(x^{31})`. We push the computation to order of
+:math:`\mathcal{O}(x^{31})`. We push the computation to
 :math:`\mathcal{O}(y^{61})`.
 
 Both extension modules are statically typed at ``double`` precision: the

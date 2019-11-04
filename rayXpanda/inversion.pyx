@@ -5,13 +5,14 @@
 
 from libc.math cimport pow
 
-def lensing(double cos_psi, double u):
+def invert(double cos_psi, double u):
     """ Local ray angle as a function of coordinate deflection and compactness.
 
     :param double: :math:`\cos\psi`
     :param double: :math:`r_{s}/R`
 
-    :returns: tuple -- (:math:`\cos\\alpha`, :math:`d\cos\\alpha/d\cos\psi/(1-u)`)
+    :returns: tuple -- (:math:`\cos\\alpha`,
+                        :math:`\partial\cos\\alpha/\partial\cos\psi/(1-u)`)
 
     """
 
@@ -23,6 +24,18 @@ def lensing(double cos_psi, double u):
 
     return (1.0 - (1.0 - u)*y*(1.0 + pow(u, 2)*P),
             1.0 + pow(u, 2)*(y*Q + P))
+
+cdef public void c_invert(double cos_psi, double u,
+                         double *cos_alpha, double *deriv):
+
+    cdef double y = 1.0 - cos_psi
+    cdef double P = 0.0
+    cdef double Q = 0.0
+
+    expansion(y, u, &P, &Q)
+
+    cos_alpha[0] = 1.0 - (1.0 - u)*y*(1.0 + pow(u, 2)*P)
+    deriv[0] = 1.0 + pow(u, 2)*(y*Q + P)
 
 cdef void expansion(double y, double u, double *P, double *Q) nogil:
 

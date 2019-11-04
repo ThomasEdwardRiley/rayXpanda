@@ -6,11 +6,11 @@ rayXpanda API
 Deflection
 ----------
 
-.. autofunction:: rayXpanda.deflection.lensing
+.. autofunction:: rayXpanda.deflection.deflect
 
 Inversion
 ---------
 
-.. autofunction:: rayXpanda.inversion.lensing
+.. autofunction:: rayXpanda.inversion.invert
 
 
