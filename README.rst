@@ -22,3 +22,12 @@ Run the ``setup.py`` script::
     CC=gcc python setup.py install [--user]
 
 You require Cython to compile to C, and then the extensions will be compiled.
+
+To compile the documentation::
+
+    cd rayXpanda/docs; make html
+
+You may then view the documentation in a browser. The files may be found in::
+
+    rayXpanda/docs/build/html
+

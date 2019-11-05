@@ -157,7 +157,7 @@ yields
 
 where :math:`z\mathrel{:=}x/(1-u)`.
 
-The polynomial in :math:`x` requires :math:`\mathcal{O}(10^{3})` floating
+The polynomial in :math:`x` requires almost :math:`10^{3}` floating
 point operations to evaluate. We generated the Cython :mod:`~.deflection`
 extension module using a Python script, organising the evaluation in a
 nested\ [#]_ Horner scheme; we did not make any attempt to optimise the
