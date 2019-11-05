@@ -191,7 +191,7 @@ numerical quadrature.
 
 .. _xpsi: https://github.com/ThomasEdwardRiley/xpsi
 
-.. figure:: primary_image_performance.png
+.. figure:: _static/primary_image_performance.png
     :figwidth: 100 %
 
     Truncation error comparison.
@@ -230,7 +230,7 @@ However, the :math:`x_{P19}(y;u)` performs better for
 accuracy of ``rayXpanda`` relative to :math:`x_{P19}(y;u)` is a function of
 :math:`u`.
 
-.. figure:: spherical_star_performance.png
+.. figure:: _static/spherical_star_performance.png
     :figwidth: 100 %
 
     Truncation error comparison, for a spherical star.

@@ -23,7 +23,7 @@ Run the ``setup.py`` script::
 
 You require Cython to compile to C, and then the extensions will be compiled.
 
-To compile the documentation::
+To compile the documentation you require a :mod:`sphinx` installation::
 
     cd rayXpanda/docs; make html
 
