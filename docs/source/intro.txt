@@ -38,3 +38,13 @@ If you wish to call the C functions from a C program, use::
 and add the ``rayXpanda`` source directory to the include path for compilation
 of your C program. When linking, point to the directory containing the shared
 objects that were compiled when ``rayXpanda`` was installed.
+
+.. _sphinx: http://www.sphinx-doc.org/en/master
+
+To compile the documentation you require a `sphinx`_ installation::
+
+    cd rayXpanda/docs; make html
+
+You may then view the documentation in a browser. The files may be found in::
+
+    rayXpanda/docs/build/html

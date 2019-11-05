@@ -50,6 +50,9 @@ intersphinx_mapping = {'sphinx': ('http://www.sphinx-doc.org/en/master', None),
            'sympy': ('https://docs.sympy.org/latest/', None)
 }
 
+primary_domain = 'py'
+highlight_language = 'py'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
