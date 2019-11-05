@@ -101,12 +101,13 @@ in the derivative
 
 .. math::
 
-    \frac{\partial\cos\alpha}{\partial\cos\psi} = \frac{\partial x}{\partial y}
-                                              = 1-u + \mathcal{O}(y^{2});
+    (1-u)\mathcal{D}= \frac{\partial\cos\alpha}{\partial\cos\psi}
+                    = \frac{\partial x}{\partial y}
+                    = 1-u + \mathcal{O}(y^{2});
 
 the derivative in the Beloborodov (2002) approximation is constant and
 performs poorly in effectively all contexts. Hereafter we simply call this
-derivative that encodes convergence as *the convergence*.
+derivative :math:`\mathcal{D}` *the convergence*.
 
 These truncated series have the desirable property that they
 are entirely inexpensive to evaluate and do not require numerical
@@ -141,7 +142,7 @@ by Beloborodov (2002) and verified them. We then proceeded symbolically\ [#]_
 to generate terms up to :math:`\mathcal{O}(x^{31})`. The resulting polynomial
 in :math:`x` has clear pattern in the structure of the coefficients, which are
 themselves polynomials in :math:`u`, where the order scales with the
-power of :math:`x`. For example, truncating at :math:`\mathcal{O}(x^{7})`
+power of :math:`x`. For example, truncating at :math:`\mathcal{O}(x^{8})`
 yields
 
 .. math::
@@ -150,20 +151,21 @@ yields
                &+\frac{z^{4}(3u - 5)}{672}\\
                &-\frac{z^{5}(2673u^2 - 8008u + 6461)}{1345344}\\
                &+\frac{z^{6}(9372u^3 - 39347u^2 + 57876u - 30324)}{10762752}\\
-               &+\mathcal{O}(x^{7}),
+               &-\frac{z^{7}(3995442u^4 - 21328659u^3 + 44260348u^2-\ldots)}{10429106688}\\
+               &+\mathcal{O}(x^{8}),
     \end{aligned}
 
 where :math:`z\mathrel{:=}x/(1-u)`.
 
 The polynomial in :math:`x` requires :math:`\mathcal{O}(10^{3})` floating
-point operations to evaluate. We generated the Cython :mod:`~.Deflection`
+point operations to evaluate. We generated the Cython :mod:`~.deflection`
 extension module using a Python script, organising the evaluation in a
 nested\ [#]_ Horner scheme; we did not make any attempt to optimise the
 evaluation beyond this. Furthermore, we obtain the polynomial *partial
 derivative* :math:`\partial y/\partial x` simultaneously for the
 (inverse) convergence, making the overall scheme efficient.
 
-To generate the Cython :mod:`~.Inversion` extension module, it was necessary
+To generate the Cython :mod:`~.inversion` extension module, it was necessary
 to reverse the polynomial to obtain a polynomial for :math:`x(y;u)`. Series
 reversion requires a larger number of terms in powers of :math:`y` to recover
 the accuracy of the :math:`y(x;u)` polynomial truncated at
@@ -175,9 +177,9 @@ coefficients of the polynomials in :math:`u` are truncated at this precision
 but are represented symbolically as a ratio of very large integers that
 require many more bits to represent. The function that we automatically
 generated for the reversed series :math:`x(y;u)` is :math:`\sim\!1700` lines
-long, with a little less than two floating point operations per line. Very
-roughly, on a GHz processor, this amounts to :math:`\mathcal{O}(10^{3})` ns
-execution time.
+long, with an average of a little less than two floating point operations per
+line. Very roughly, on a GHz processor, this amounts to
+:math:`\mathcal{O}(10^{3})` ns execution time.
 
 
 Performance
@@ -192,11 +194,31 @@ numerical quadrature.
 .. figure:: primary_image_performance.png
     :figwidth: 100 %
 
-    Truncation error comparison. The behaviour and error exhibited by
-    ``rayXpanda`` is delineated by the **solid** lines. The behavior and error
-    of the :math:`x_{P19}(y;u)` relation is delineated by the **dash-dot**
-    lines. The exact relations are delineated in the top panels by the
-    **dashed** lines. The error :math:`|\varepsilon|` is the fractional error.
+    Truncation error comparison.
+    The behaviour and error exhibited by
+    :func:`~.inversion.invert` is delineated by the **solid** lines. The error
+    exhibited by the :func:`~.deflection.deflect` is delineated by the **dotted**
+    lines in the lower panels.
+    The behavior and error of the :math:`x_{P19}(y;u)` relation is delineated
+    by the **dash-dot** lines. The exact relations are delineated in the top
+    panels by the **dashed** lines. The error :math:`|\varepsilon|` is the
+    fractional error.
+
+The fractional error :math:`\varepsilon` is defined according to the relation
+whose truncation error we are interested in. The exact ray properties
+computed via numerical quadrature were generated for an
+array of :math:`\cos\alpha` values, yielding deflections. For approximative
+*inverse* relations such as :math:`x_{P19}(y;u)`, we calculate
+:math:`\tilde{\alpha}` given those exact deflections, and define
+:math:`\varepsilon=|\alpha - \tilde{\alpha}|/\alpha`. For the
+:func:`~.deflection.deflect` module we compute :math:`\tilde{\psi}` and define
+:math:`\varepsilon=|\psi - \tilde{\psi}|/\psi`.
+
+However, for the derivative :math:`\mathcal{D}`, the error is
+:math:`\varepsilon=|\mathcal{D} - \tilde{\mathcal{D}}|/\mathcal{D}`. The
+``rayXpanda`` error curves---one for :func:`~.deflection.deflect`, and one
+for :func:`~.inversion.invert`---pertaining to :math:`\mathcal{D}` thus
+converge as :math:`\cos\alpha\to1`.
 
 The addition of the logarithmic term by Poutanen (2019) has the effect
 that in the limit :math:`y\to2^{-}`, :math:`x_{P19}\to\infty`, forcing
@@ -213,12 +235,15 @@ accuracy of ``rayXpanda`` relative to :math:`x_{P19}(y;u)` is a function of
 
     Truncation error comparison, for a spherical star.
     The behaviour and error exhibited by
-    ``rayXpanda`` is delineated by the **solid** lines. The behavior and error
-    of the :math:`x_{P19}(y;u)` relation is delineated by the **dash-dot**
-    lines. The exact relations are delineated in the top panels by the
-    **dashed** lines. The error :math:`|\varepsilon|` is the fractional error.
+    :func:`~.inversion.invert` is delineated by the **solid** lines. The error
+    exhibited by the :func:`~.deflection.deflect` is delineated by the **dotted**
+    lines in the lower panels.
+    The behavior and error of the :math:`x_{P19}(y;u)` relation is delineated
+    by the **dash-dot** lines. The exact relations are delineated in the top
+    panels by the **dashed** lines. The error :math:`|\varepsilon|` is the
+    fractional error.
 
-For a spherical star, rayXpanda is effectively always more accurate (still
+For a spherical star, ``rayXpanda`` is effectively always more accurate (still
 considering primary images only) apart from where the :math:`x_{P19}(y;u)`
 relation cross the exact relation. The accuracies become very comparable
 for more compact stars when :math:`\cos\psi\to-1` for :math:`\cos\alpha>0`.
