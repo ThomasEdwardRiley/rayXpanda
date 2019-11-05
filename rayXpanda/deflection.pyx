@@ -3,6 +3,7 @@
 #cython: nonecheck=False
 #cython: wraparound=False
 
+import numpy as np
 from libc.math cimport pow
 
 def deflect(double cos_alpha, double u):
@@ -25,6 +26,34 @@ def deflect(double cos_alpha, double u):
     return (1.0 - z*(1.0 + pow(u, 2)*P),
             1.0/(1.0 + pow(u, 2)*(z*Q + P)))
 
+def deflect_vec(double[::1] cos_alpha, double u):
+    """ Vectorised version of :func:`deflect`.
+
+    :param obj: 1D :class:`numpy.ndarray` of :math:`\cos\\alpha`
+    :param double: :math:`r_{s}/R`
+
+    :returns: tuple -- (1D :class:`numpy.ndarray` of :math:`\cos\psi`,
+                        1D :class:`numpy.ndarray` of :math:`\partial\cos\\alpha/\partial\cos\psi/(1-u)`)
+
+    """
+
+    cdef double z
+    cdef double P = 0.0
+    cdef double Q = 0.0
+    cdef double[::1] deriv = np.empty(cos_alpha.shape[0], dtype = np.double)
+
+    cdef size_t i
+
+    for i in range(cos_alpha.shape[0]):
+        z = 1.0 - cos_alpha[i]/(1.0 - u)
+        expansion(z, u, &P, &Q)
+        cos_alpha[i] = 1.0 - z*(1.0 + pow(u, 2)*P)
+        deriv[i] = 1.0/(1.0 + pow(u, 2)*(z*Q + P))
+
+    return (np.asarray(cos_alpha, dtype = np.double, order = 'C'),
+            np.asarray(deriv, dtype = np.double, order = 'C'))
+
+
 cdef public void c_deflect(double cos_alpha, double u,
                            double *cos_psi, double *deriv):
 
@@ -42,7 +71,6 @@ cdef void expansion(double z, double u, double *P, double *Q) nogil:
     cdef double p # polynomial in z, p(z)
     cdef double q = 0.0 # derivative p'(z)
     cdef double a # temporary storage of each p(z) coefficient, a polynomial in u, a(u)
-
 
     p = 9.884951758609434e-12
     p = -2.870078765724739e-10 + u * p

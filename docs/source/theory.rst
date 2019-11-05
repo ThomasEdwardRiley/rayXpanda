@@ -218,7 +218,7 @@ However, for the derivative :math:`\mathcal{D}`, the error is
 :math:`\varepsilon=|\mathcal{D} - \tilde{\mathcal{D}}|/\mathcal{D}`. The
 ``rayXpanda`` error curves---one for :func:`~.deflection.deflect`, and one
 for :func:`~.inversion.invert`---pertaining to :math:`\mathcal{D}` thus
-converge as :math:`\cos\alpha\to1`.
+visibly converge as with increasing :math:`\cos\alpha`.
 
 The addition of the logarithmic term by Poutanen (2019) has the effect
 that in the limit :math:`y\to2^{-}`, :math:`x_{P19}\to\infty`, forcing

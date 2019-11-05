@@ -14,7 +14,6 @@ import os
 from setuptools import setup, Extension
 
 if __name__ == '__main__':
-    import numpy
     import sys
     OS = sys.platform
     import os

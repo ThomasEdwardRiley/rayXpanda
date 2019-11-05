@@ -47,7 +47,8 @@ extensions = ['sphinx.ext.autodoc',
 
 intersphinx_mapping = {'sphinx': ('http://www.sphinx-doc.org/en/master', None),
            'cython': ('http://cython.readthedocs.io/en/latest', None),
-           'sympy': ('https://docs.sympy.org/latest/', None)
+           'sympy': ('https://docs.sympy.org/latest/', None),
+           'numpy': ('http://docs.scipy.org/doc/numpy', None)
 }
 
 primary_domain = 'py'

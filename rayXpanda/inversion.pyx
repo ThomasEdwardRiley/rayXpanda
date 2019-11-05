@@ -3,6 +3,7 @@
 #cython: nonecheck=False
 #cython: wraparound=False
 
+import numpy as np
 from libc.math cimport pow
 
 def invert(double cos_psi, double u):
@@ -24,6 +25,33 @@ def invert(double cos_psi, double u):
 
     return (1.0 - (1.0 - u)*y*(1.0 + pow(u, 2)*P),
             1.0 + pow(u, 2)*(y*Q + P))
+
+def invert_vec(double[::1] cos_psi, double u):
+    """ Vectorised version of :func:`invert`.
+
+    :param obj: 1D :class:`numpy.ndarray` of :math:`\cos\psi`
+    :param double: :math:`r_{s}/R`
+
+    :returns: tuple -- (1D :class:`numpy.ndarray` of :math:`\cos\\alpha`,
+                        1D :class:`numpy.ndarray` of :math:`\partial\cos\\alpha/\partial\cos\psi/(1-u)`)
+
+    """
+
+    cdef double y
+    cdef double P = 0.0
+    cdef double Q = 0.0
+    cdef double[::1] deriv = np.empty(cos_psi.shape[0], dtype = np.double)
+
+    cdef size_t i
+
+    for i in range(cos_psi.shape[0]):
+        y = 1.0 - cos_psi[i]
+        expansion(y, u, &P, &Q)
+        cos_psi[i] = 1.0 - (1.0 - u)*y*(1.0 + pow(u, 2)*P)
+        deriv[i] = 1.0 + pow(u, 2)*(y*Q + P)
+
+    return (np.asarray(cos_psi, dtype = np.double, order = 'C'),
+            np.asarray(deriv, dtype = np.double, order = 'C'))
 
 cdef public void c_invert(double cos_psi, double u,
                           double *cos_alpha, double *deriv):

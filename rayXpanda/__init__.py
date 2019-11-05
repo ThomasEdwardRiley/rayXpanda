@@ -10,8 +10,6 @@ except NameError:
 
 if not __RAYXPANDA_SETUP__:
 
-    import six as _six
-
     vstring = "Version: %s" % __version__
     name = "  rayXpanda  "
     print("/" + "="*(len(name)+4) + "\\")
