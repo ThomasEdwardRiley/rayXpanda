@@ -41,14 +41,14 @@ def deflect_vec(double[::1] cos_alpha, double u):
     cdef double P = 0.0
     cdef double Q = 0.0
     cdef double[::1] deriv = np.empty(cos_alpha.shape[0], dtype = np.double)
-
+    cdef double u2 = pow(u, 2)
     cdef size_t i
 
     for i in range(cos_alpha.shape[0]):
-        z = 1.0 - cos_alpha[i]/(1.0 - u)
+        z = (1.0 - cos_alpha[i])/(1.0 - u)
         expansion(z, u, &P, &Q)
-        cos_alpha[i] = 1.0 - z*(1.0 + pow(u, 2)*P)
-        deriv[i] = 1.0/(1.0 + pow(u, 2)*(z*Q + P))
+        cos_alpha[i] = 1.0 - z*(1.0 + u2*P)
+        deriv[i] = 1.0/(1.0 + u2*(z*Q + P))
 
     return (np.asarray(cos_alpha, dtype = np.double, order = 'C'),
             np.asarray(deriv, dtype = np.double, order = 'C'))
@@ -57,7 +57,7 @@ def deflect_vec(double[::1] cos_alpha, double u):
 cdef public void c_deflect(double cos_alpha, double u,
                            double *cos_psi, double *deriv):
 
-    cdef double z = 1.0 - cos_alpha
+    cdef double z = (1.0 - cos_alpha)/(1.0 - u)
     cdef double P = 0.0
     cdef double Q = 0.0
 

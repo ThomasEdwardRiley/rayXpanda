@@ -218,7 +218,7 @@ However, for the derivative :math:`\mathcal{D}`, the error is
 :math:`\varepsilon=|\mathcal{D} - \tilde{\mathcal{D}}|/\mathcal{D}`. The
 ``rayXpanda`` error curves---one for :func:`~.deflection.deflect`, and one
 for :func:`~.inversion.invert`---pertaining to :math:`\mathcal{D}` thus
-visibly converge as with increasing :math:`\cos\alpha`.
+visibly converge with increasing :math:`\cos\alpha`.
 
 The addition of the logarithmic term by Poutanen (2019) has the effect
 that in the limit :math:`y\to2^{-}`, :math:`x_{P19}\to\infty`, forcing
@@ -256,7 +256,13 @@ shared objects of ``rayXpanda`` is estimated to require
 a Python extension module, the overhead dominates the processor time to
 evaluated :math:`x_{P19}(y;u)`, resulting in an evaluation time of
 :math:`\mathcal{O}(10^{3})` ns. Therefore, when called from a Python program,
-the expense is almost commensurate.
+the expense is almost commensurate per ray. Ideally, however, one would make
+far fewer calls through the Python/C API than ray evaluations---for instance,
+by using vectorised functions such as :func:`~.deflection.deflect_vec`
+and :func:`~.inversion.invert_vec`. A loop over rays in an extension is
+likely context, and in this case ``rayXpanda`` is more expensive than
+a low-level implementation of :math:`x_{P19}(y;u)`.
+
 
 Future development
 ------------------

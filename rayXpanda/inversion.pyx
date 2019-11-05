@@ -41,14 +41,14 @@ def invert_vec(double[::1] cos_psi, double u):
     cdef double P = 0.0
     cdef double Q = 0.0
     cdef double[::1] deriv = np.empty(cos_psi.shape[0], dtype = np.double)
-
+    cdef double u2 = pow(u, 2)
     cdef size_t i
 
     for i in range(cos_psi.shape[0]):
         y = 1.0 - cos_psi[i]
         expansion(y, u, &P, &Q)
-        cos_psi[i] = 1.0 - (1.0 - u)*y*(1.0 + pow(u, 2)*P)
-        deriv[i] = 1.0 + pow(u, 2)*(y*Q + P)
+        cos_psi[i] = 1.0 - (1.0 - u)*y*(1.0 + u2*P)
+        deriv[i] = 1.0 + u2*(y*Q + P)
 
     return (np.asarray(cos_psi, dtype = np.double, order = 'C'),
             np.asarray(deriv, dtype = np.double, order = 'C'))
@@ -70,6 +70,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     cdef double p # polynomial in y, p(y)
     cdef double q = 0.0 # derivative p'(y)
     cdef double a # temporary storage of each p(y) coefficient, a polynomial in u, a(u)
+    cdef double u2 = pow(u, 2)
 
     p = 1.360053577014764e-14
     p = -6.530930440631782e-13 + u * p
@@ -126,7 +127,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     p = 6.184903572854290e-15 + u * p
     p = -1.341376289171378e-16 + u * p
     p = 3.190728936599881e-18 + u * p
-    p = pow(u, 2) * p
+    p = u2 * p
     a = -2.105480682397939e-14
     a = 9.934759630375658e-13 + u * a
     a = -2.298131192799174e-11 + u * a
@@ -181,7 +182,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.716638065111055e-14 + u * a
     a = -5.132661132583374e-16 + u * a
     a = 1.246070488132047e-17 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 3.260903518625290e-14
@@ -237,7 +238,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 4.253241334951000e-14 + u * a
     a = -1.471572084276740e-15 + u * a
     a = 3.647610942589591e-17 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -5.052691793599766e-14
@@ -292,7 +293,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 9.887635817478757e-14 + u * a
     a = -3.746571926444470e-15 + u * a
     a = 9.485498339888342e-17 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 7.832725757004893e-14
@@ -346,7 +347,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 2.205843655992493e-13 + u * a
     a = -8.933112024279551e-15 + u * a
     a = 2.311034123992546e-16 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -1.214830701117611e-13
@@ -399,7 +400,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 4.779890120918280e-13 + u * a
     a = -2.042511897907493e-14 + u * a
     a = 5.401701879667689e-16 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 1.885120877611722e-13
@@ -451,7 +452,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.013355566746743e-12 + u * a
     a = -4.535119787294331e-14 + u * a
     a = 1.226617155975537e-15 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -2.926790118314871e-13
@@ -502,7 +503,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 2.111673599081769e-12 + u * a
     a = -9.852070143634152e-14 + u * a
     a = 2.726472152673190e-15 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 4.546547076959692e-13
@@ -552,7 +553,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 4.338929650230358e-12 + u * a
     a = -2.104098802156107e-13 + u * a
     a = 5.960732608945804e-15 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -7.066735836987444e-13
@@ -601,7 +602,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 8.810378781839584e-12 + u * a
     a = -4.432164561707248e-13 + u * a
     a = 1.285949626939521e-14 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 1.099038601389196e-12
@@ -649,7 +650,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.770769674978820e-11 + u * a
     a = -9.229329981795345e-13 + u * a
     a = 2.743947834414670e-14 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -1.710308407953505e-12
@@ -696,7 +697,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 3.526968528711290e-11 + u * a
     a = -1.903043273130636e-12 + u * a
     a = 5.800745360585615e-14 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 2.663265291424299e-12
@@ -742,7 +743,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 6.967847907548022e-11 + u * a
     a = -3.890298604762995e-12 + u * a
     a = 1.216434406617853e-13 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -4.149968143122494e-12
@@ -787,7 +788,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.366285773846587e-10 + u * a
     a = -7.891687795677327e-12 + u * a
     a = 2.532778542927260e-13 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 6.471098558526852e-12
@@ -831,7 +832,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 2.660378123332661e-10 + u * a
     a = -1.589666483506004e-11 + u * a
     a = 5.239817386114868e-13 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -1.009781928820249e-11
@@ -874,7 +875,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 5.145847461133771e-10 + u * a
     a = -3.181337345390151e-11 + u * a
     a = 1.077642660340148e-12 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 1.576913290676869e-11
@@ -916,7 +917,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 9.889723783331165e-10 + u * a
     a = -6.327554069094911e-11 + u * a
     a = 2.204141163215846e-12 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -2.464529184937581e-11
@@ -957,7 +958,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.888782642680158e-09 + u * a
     a = -1.251078624342204e-10 + u * a
     a = 4.484585828790179e-12 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 3.854982537090316e-11
@@ -997,7 +998,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 3.584795654187470e-09 + u * a
     a = -2.459268009373025e-10 + u * a
     a = 9.077921243643272e-12 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -6.035186565848465e-11
@@ -1036,7 +1037,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 6.760855705729109e-09 + u * a
     a = -4.806176419068431e-10 + u * a
     a = 1.828291921764235e-11 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 9.457092613895411e-11
@@ -1074,7 +1075,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.266821338260143e-08 + u * a
     a = -9.337107593024869e-10 + u * a
     a = 3.663203271912040e-11 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -1.483349442292037e-10
@@ -1111,7 +1112,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 2.357589933848422e-08 + u * a
     a = -1.802712452083391e-09 + u * a
     a = 7.300158429175921e-11 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 2.329002565777676e-10
@@ -1147,7 +1148,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 4.355577006666588e-08 + u * a
     a = -3.457345372960708e-09 + u * a
     a = 1.446370690372970e-10 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -3.660670839615523e-10
@@ -1182,7 +1183,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 7.982198616575727e-08 + u * a
     a = -6.581844084121017e-09 + u * a
     a = 2.847169860409449e-10 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 5.760233841881919e-10
@@ -1216,7 +1217,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.449449100311986e-07 + u * a
     a = -1.242378220822287e-08 + u * a
     a = 5.562614936949344e-10 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -9.074928734972348e-10
@@ -1249,7 +1250,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 2.603181902878515e-07 + u * a
     a = -2.321073798083305e-08 + u * a
     a = 1.076845551088489e-09 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 1.431372314690633e-09
@@ -1281,7 +1282,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 4.610147483188227e-07 + u * a
     a = -4.279214216585876e-08 + u * a
     a = 2.059844949914079e-09 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -2.261559761582609e-09
@@ -1312,7 +1313,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 8.006017162001579e-07 + u * a
     a = -7.743499994885994e-08 + u * a
     a = 3.874001038758505e-09 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = 3.574565842850718e-09
@@ -1342,7 +1343,7 @@ cdef void expansion(double y, double u, double *P, double *Q) nogil:
     a = 1.347279269720361e-06 + u * a
     a = -1.359953936725149e-07 + u * a
     a = 7.090787962637051e-09 + u * a
-    a = pow(u, 2) * a
+    a = u2 * a
     q = p + y * q
     p = a + y * p
     a = -5.667942245707309e-09

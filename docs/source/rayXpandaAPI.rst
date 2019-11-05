@@ -16,7 +16,8 @@ Inversion
 Vectorised
 ----------
 
-Pass :class:`numpy.ndarray` objects for the ``__Pyx_memviewslice`` positions.
+Pass *contiguous* :class:`numpy.ndarray` objects for the
+``__Pyx_memviewslice`` arguments.
 
 .. autofunction:: rayXpanda.deflection.deflect_vec
 
