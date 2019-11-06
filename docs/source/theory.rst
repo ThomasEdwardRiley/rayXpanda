@@ -267,7 +267,7 @@ the expense is almost commensurate per ray. Ideally, however, one would make
 far fewer calls through the Python/C API than ray evaluations---for instance,
 by using vectorised functions such as :func:`~.deflection.deflect_vec`
 and :func:`~.inversion.invert_vec`. A loop over rays in an extension is
-likely context, and in this case ``rayXpanda`` is more expensive than
+a likely context, and in this case ``rayXpanda`` is more expensive than
 a low-level implementation of :math:`x_{P19}(y;u)`.
 
 
