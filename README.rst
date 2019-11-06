@@ -21,10 +21,11 @@ Run the ``setup.py`` script::
 
     CC=<compiler> python setup.py install [--user]
 
-You require Cython to compile to C, and then the extensions will be compiled.
+You require cython_ to compile to C, and then the extensions will be compiled.
 For example, set ``CC=gcc`` for GNU or ``CC=icc`` for Intel, depending on
 your system.
 
+.. _cython: http://cython.readthedocs.io/en/latest
 .. _sphinx: http://www.sphinx-doc.org/en/master
 
 To compile the documentation you require a `sphinx`_ installation::
