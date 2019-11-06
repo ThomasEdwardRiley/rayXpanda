@@ -54,7 +54,7 @@ two points in space with principal angular separation :math:`\psi\in[0,\pi]`.
 The integral given above is valid for :math:`\alpha\leq\pi/2`, but the
 Beloborodov (2002) series truncation is valid for the set
 :math:`\{x\colon\;y(x)\leq2\}`.
-The smoothness of the exact relation :math:`y(x;u)`, for fixed :math:`u`, as
+The smoothness of the exact relation :math:`y(x;u)`, for fixed :math:`u`,
 across the transition :math:`\alpha=\pi/2` means that a series expansion
 with some sufficiently small truncation error for :math:`\alpha\to\pi/2^{-}`
 can form an adequate approximation for :math:`\alpha>\pi/2`, for which the
@@ -236,7 +236,7 @@ accuracy of ``rayXpanda`` relative to :math:`x_{P19}(y;u)` is a function of
     Truncation error comparison, for a spherical star.
     The behaviour and error exhibited by
     :func:`~.inversion.invert` is delineated by the **solid** lines. The error
-    exhibited by the :func:`~.deflection.deflect` is delineated by the **dotted**
+    exhibited by :func:`~.deflection.deflect` is delineated by the **dotted**
     lines in the lower panels.
     The behavior and error of the :math:`x_{P19}(y;u)` relation is delineated
     by the **dash-dot** lines. The exact relations are delineated in the top
