@@ -5,7 +5,7 @@ rayXpanda: Schwarzschild null geodesic expansion to high-order
 **************************************************************
 
 
-The rayXpanda extension modules supply compiled functions for fast
+The ``rayXpanda`` extension modules supply compiled functions for fast
 approximation of several null geodesic properties in the Schwarzschild
 spacetime, *without* need for numerical integration or interpolation or any
 external numerical libraries for that matter. These routines can thus be used
