@@ -197,8 +197,9 @@ numerical quadrature.
     Truncation error comparison.
     The behaviour and error exhibited by
     :func:`~.inversion.invert` is delineated by the **solid** lines. The error
-    exhibited by the :func:`~.deflection.deflect` is delineated by the **dotted**
-    lines in the lower panels.
+    exhibited by the :func:`~.deflection.deflect` is delineated by the
+    **dotted** lines (not labelled in the legend); these lines follow the
+    exact relations very closely.
     The behavior and error of the :math:`x_{P19}(y;u)` relation is delineated
     by the **dash-dot** lines. The exact relations are delineated in the top
     panels by the **dashed** lines. The error :math:`|\varepsilon|` is the
