@@ -69,6 +69,12 @@ exact function is given by
 
 where :math:`\Theta(\ldots)` denotes the Heaviside function.
 
+.. figure:: _static/exact_relations.png
+    :figwidth: 100 %
+
+    Exact deflection relations computed using numerical integration routines 
+    from the xpsi_ package.
+
 However, series truncation results in a lack of curvature, and for a subset of
 the nominal domain :math:`\alpha\in[0,\pi/2]`, values :math:`y>2`, which
 invalidates the definition :math:`y=1-\cos\psi`. The approximation is valid
