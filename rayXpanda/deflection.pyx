@@ -27,13 +27,20 @@ def deflect(double cos_alpha, double u):
             1.0/(1.0 + pow(u, 2)*(z*Q + P)))
 
 def deflect_vec(double[::1] cos_alpha, double u):
-    """ Vectorised version of :func:`deflect`.
+    """ Vectorised variant of :func:`deflect`.
 
     :param obj: 1D :class:`numpy.ndarray` of :math:`\cos\\alpha`
     :param double: :math:`r_{s}/R`
 
     :returns: tuple -- (1D :class:`numpy.ndarray` of :math:`\cos\psi`,
                         1D :class:`numpy.ndarray` of :math:`\partial\cos\\alpha/\partial\cos\psi/(1-u)`)
+
+    .. note::
+
+        The underlying C array pointed upon call is modified in place and
+        returned having been transformed according to
+        :math:`\cos\\alpha\mapsto\cos\psi`.
+
 
     """
 
