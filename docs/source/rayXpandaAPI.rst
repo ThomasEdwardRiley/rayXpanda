@@ -3,10 +3,14 @@
 rayXpanda API
 =============
 
+.. module:: rayXpanda.deflection
+
 Deflection
 ----------
 
 .. autofunction:: rayXpanda.deflection.deflect
+
+.. module:: rayXpanda.inversion
 
 Inversion
 ---------

@@ -21,14 +21,14 @@ Run the ``setup.py`` script::
 
     CC=<compiler> python setup.py install [--user]
 
-You require cython_ to compile to C, and then the extensions will be compiled.
+You require Cython_ to compile to C, and then the extensions will be compiled.
 For example, set ``CC=gcc`` for GNU or ``CC=icc`` for Intel, depending on
 your system.
 
-.. _cython: http://cython.readthedocs.io/en/latest
-.. _sphinx: http://www.sphinx-doc.org/en/master
+.. _Cython: http://cython.readthedocs.io/en/latest
+.. _Sphinx: http://www.sphinx-doc.org/en/master
 
-To compile the documentation you require a `sphinx`_ installation::
+To compile the documentation you require a `Sphinx`_ installation::
 
     cd rayXpanda/docs; make html
 
