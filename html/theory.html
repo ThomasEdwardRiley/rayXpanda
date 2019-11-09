@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Theory &mdash; rayXpanda 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="rayXpanda" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> rayXpanda
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ray-expansion">Ray expansion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-development">Future development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rayXpandaAPI.html">rayXpanda API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rayXpanda</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Theory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/theory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="theory">
+<span id="id1"></span><h1>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ray-expansion">
+<h2>Ray expansion<a class="headerlink" href="#ray-expansion" title="Permalink to this headline">¶</a></h2>
+<p>The geodesic (ray) property of interest is the coordinate deflection integral
+with respect to the radial coordinate</p>
+<div class="math notranslate nohighlight">
+\[\psi(\alpha,R) = b\mathop{\int}_{R}^{\infty}\frac{dr}{r^{2}}\left[1 - \frac{b^{2}}{r^{2}}\left(1-\frac{r_{s}}{r}\right)\right]^{-1/2},\]</div>
+<p>where: <span class="math notranslate nohighlight">\(R\)</span> is the radial coordinate at some spacetime event along the ray;
+<span class="math notranslate nohighlight">\(r_{s}\)</span> is the Schwarzschild radius; and the impact parameter,
+<span class="math notranslate nohighlight">\(b=b(\alpha,R)\)</span>, is affine-invariant. The impact parameter is</p>
+<div class="math notranslate nohighlight">
+\[b(\alpha, R) = \frac{R\sin\alpha}{\sqrt{1-\frac{r_{s}}{R}}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle subtended by the ray tangent four-vector to
+the radial direction with respect to the orthonormal tetrad of a local
+Eulerian frame. We are only interested in angles <span class="math notranslate nohighlight">\(\alpha\leq\pi/2\)</span> for
+the purpose of approximation design.</p>
+<p>The deflection integral has no known closed-form solution. Exact solutions
+are approached via numerical quadrature with a variable transformation
+to make the integral domain compact and remove the integrand divergence as
+<span class="math notranslate nohighlight">\(r\to r_{c}^{+}\)</span>, where <span class="math notranslate nohighlight">\(r_{c}&gt;3r_{s}/2\)</span> is the turning point
+<span class="math notranslate nohighlight">\(dr/d\lambda=0\)</span> of a scattering ray, and is <span class="math notranslate nohighlight">\(r_{c}=r_{c}(b)\)</span>.<a class="footnote-reference" href="#id6" id="id2">[1]</a></p>
+<p>However, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002ApJ...566L..85B/abstract">Beloborodov (2002)</a> showed that if one lets <span class="math notranslate nohighlight">\(y=1-\cos\psi\)</span> and
+<span class="math notranslate nohighlight">\(x=1-\cos\alpha\)</span>, then the <span class="math notranslate nohighlight">\(\mathcal{O}(x^{2})\)</span> term of the
+series expansion <span class="math notranslate nohighlight">\(y(x;u)\)</span> <em>vanishes</em>, leading to a useful linear relation</p>
+<div class="math notranslate nohighlight">
+\[y(x;u) = \frac{x}{1-u}+\mathcal{O}(x^{3}),\]</div>
+<p>where <span class="math notranslate nohighlight">\(u\mathrel{:=}r_{s}/R\)</span>. Note that integrand factor that is
+expanded, <span class="math notranslate nohighlight">\(x\)</span> appears via <span class="math notranslate nohighlight">\(\sin\alpha\)</span>: although <span class="math notranslate nohighlight">\(x\in[0,2]\)</span>,
+the combination <span class="math notranslate nohighlight">\(\sin\alpha=\sqrt{x(2-x)}\in[0,1]\)</span>, and the expansion
+with respect to <span class="math notranslate nohighlight">\(x\)</span> is possible due to the <em>small</em> function of <span class="math notranslate nohighlight">\(x\)</span>.
+Also note that due to consideration of <span class="math notranslate nohighlight">\(\cos\psi\)</span>, the exact function
+<span class="math notranslate nohighlight">\(y(x;u)\)</span>, for domain <span class="math notranslate nohighlight">\(x\in[0,2]\)</span>, is non-injective. The extrema
+in <span class="math notranslate nohighlight">\(y(x;u)\)</span> denote transitions, with increasing <span class="math notranslate nohighlight">\(x\)</span>, to subdomains
+that add<a class="footnote-reference" href="#id7" id="id3">[2]</a> an image—i.e., another ray bundle connecting neighbourhoods of
+two points in space with principal angular separation <span class="math notranslate nohighlight">\(\psi\in[0,\pi]\)</span>.
+The integral given above is valid for <span class="math notranslate nohighlight">\(\alpha\leq\pi/2\)</span>, but the
+Beloborodov (2002) series truncation is valid for the set
+<span class="math notranslate nohighlight">\(\{x\colon\;y(x)\leq2\}\)</span>.
+The smoothness of the exact relation <span class="math notranslate nohighlight">\(y(x;u)\)</span>, for fixed <span class="math notranslate nohighlight">\(u\)</span>,
+across the transition <span class="math notranslate nohighlight">\(\alpha=\pi/2\)</span> means that a series expansion
+with some sufficiently small truncation error for <span class="math notranslate nohighlight">\(\alpha\to\pi/2^{-}\)</span>
+can form an adequate approximation for <span class="math notranslate nohighlight">\(\alpha&gt;\pi/2\)</span>, for which the
+exact function is given by</p>
+<div class="math notranslate nohighlight" id="equation">
+\[\begin{split}\begin{aligned}
+\psi(\alpha,R) &amp;= 2b\Theta\left(\alpha - \frac{\pi}{2}\right)\mathop{\int}_{r_{c}}^{\infty}\frac{dr}{r^{2}}\left[1 - \frac{b^{2}}{r^{2}}\left(1-\frac{r_{s}}{r}\right)\right]^{-1/2}\\
+                 &amp;\qquad + (-1)^{\Theta\left(\alpha - \frac{\pi}{2}\right)}b\mathop{\int}_{R}^{\infty}\frac{dr}{r^{2}}\left[1 - \frac{b^{2}}{r^{2}}\left(1-\frac{r_{s}}{r}\right)\right]^{-1/2},
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Theta(\ldots)\)</span> denotes the Heaviside function.</p>
+<div class="figure" id="id10" style="width: 100%">
+<img alt="_images/exact_relations.png" src="_images/exact_relations.png" />
+<p class="caption"><span class="caption-text">Exact deflection relations computed using numerical integration routines
+from the <a class="reference external" href="https://github.com/ThomasEdwardRiley/xpsi">xpsi</a> package.</span></p>
+</div>
+<p>However, series truncation results in a lack of curvature, and for a subset of
+the nominal domain <span class="math notranslate nohighlight">\(\alpha\in[0,\pi/2]\)</span>, values <span class="math notranslate nohighlight">\(y&gt;2\)</span>, which
+invalidates the definition <span class="math notranslate nohighlight">\(y=1-\cos\psi\)</span>. The approximation is valid
+only for <em>primary images</em>, defined by deflections <span class="math notranslate nohighlight">\(\psi&lt;\pi\)</span>, and the
+truncation error grows as <span class="math notranslate nohighlight">\(\psi\to\pi^{-}\)</span>.</p>
+<p>In the context of many astrophysical
+problems in which the Schwarzschild solution is applicable, a model
+defines the spatio-temporal structure of radiating material in the
+near-vicinity of a compact object; the computational domain is then, by virtue
+of the symmetries of the Schwarzschild solution, discretised for integration
+over the high-energy image subtended by the system on the sky of a distant
+observer. The simulator then knows the coordinates of points from whose
+neighbourhoods radiation originates, and thus knows the coordinate angular
+separation <span class="math notranslate nohighlight">\(\psi\)</span> between each point and the distant observer, in a
+coordinate chart with polar axis defined as coincident with the direction
+from the observer to the origin of any Schwarzschild chart. Due to symmetry,
+the tangent three-vector to the ray at any spacetime event along it is coplanar
+with the tangent three-vector at any other point along the ray.</p>
+<p>It follows that for integration over the image of the radiating system, a
+relation</p>
+<div class="math notranslate nohighlight">
+\[x(y;u) = (1-u)y+\mathcal{O}(y^{3})\]</div>
+<p>is desired, together with the convergence of ray bundles, which is encoded
+in the derivative</p>
+<div class="math notranslate nohighlight">
+\[(1-u)\mathcal{D}= \frac{\partial\cos\alpha}{\partial\cos\psi}
+                = \frac{\partial x}{\partial y}
+                = 1-u + \mathcal{O}(y^{2});\]</div>
+<p>the derivative in the Beloborodov (2002) approximation is constant and
+performs poorly in effectively all contexts. Hereafter we simply call this
+derivative <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> <em>the convergence</em>.</p>
+<p>These truncated series have the desirable property that they
+are entirely inexpensive to evaluate and do not require numerical
+integration nor interpolation. However, more recents studies have attempted
+to improve these analytic expressions, with the justification being that
+the truncation error is undesirably large in many applications. These efforts
+are summarised by <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019arXiv190905732P/abstract">Poutanen (2019)</a>, who offers an new <span class="math notranslate nohighlight">\(x(y;u)\)</span>
+relation—that we will label <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>—that uses the expansion
+reported by Beloborov (2002), truncated at <span class="math notranslate nohighlight">\(\mathcal{O}(x^{4})\)</span>, and
+extends it with a logarithmic term to increase the curvature of the
+<span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> relation in the near-vicinity of <span class="math notranslate nohighlight">\(y\to2^{-}\)</span>.</p>
+<p>The intention of <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> is to push the notion of series expansion to
+a practical limit, and provide functions that can be compiled and executed
+somewhat inexpensively. The <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> relation is fast, argued to be
+sufficiently accurate in the majority of statistical contexts involving primary
+images and (real or simulated) observations, and simple to duplicate. However,
+<code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code>  is motivated by the pursuit of an accurate implementation that
+does not depend on numerical quadrature, integration, or interpolation, and
+does not add any phenomenological terms that are not generated by the integral
+equation under expansion in a small parameter. By doing so, <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code>
+achieves superior accuracy over <em>most</em> of the domain of interest, at
+slightly higher computational expense. The orthogonality however, means that
+<code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> can at the least be used as an independent check of exact
+implementations that call numerical integrators and interpolators.</p>
+<p>To achieve this aim, the extension modules supplied by <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> were
+generated as follows. First we pursued the higher-order expansion terms given
+by Beloborodov (2002) and verified them. We then proceeded symbolically<a class="footnote-reference" href="#id8" id="id4">[3]</a>
+to generate terms up to <span class="math notranslate nohighlight">\(\mathcal{O}(x^{31})\)</span>. The resulting polynomial
+in <span class="math notranslate nohighlight">\(x\)</span> has clear pattern in the structure of the coefficients, which are
+themselves polynomials in <span class="math notranslate nohighlight">\(u\)</span>, where the order scales with the
+power of <span class="math notranslate nohighlight">\(x\)</span>. For example, truncating at <span class="math notranslate nohighlight">\(\mathcal{O}(x^{8})\)</span>
+yields</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\frac{y(x;u)}{u^{2}} = \frac{z}{u^{2}} &amp;- \frac{z^{3}}{112}\\
+           &amp;+\frac{z^{4}(3u - 5)}{672}\\
+           &amp;-\frac{z^{5}(2673u^2 - 8008u + 6461)}{1345344}\\
+           &amp;+\frac{z^{6}(9372u^3 - 39347u^2 + 57876u - 30324)}{10762752}\\
+           &amp;-\frac{z^{7}(3995442u^4 - 21328659u^3 + 44260348u^2-\ldots)}{10429106688}\\
+           &amp;+\mathcal{O}(x^{8}),
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(z\mathrel{:=}x/(1-u)\)</span>.</p>
+<p>The polynomial in <span class="math notranslate nohighlight">\(x\)</span> requires almost <span class="math notranslate nohighlight">\(10^{3}\)</span> floating
+point operations to evaluate. We generated the Cython <a class="reference internal" href="rayXpandaAPI.html#module-rayXpanda.deflection" title="rayXpanda.deflection"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deflection</span></code></a>
+extension module using a Python script, organising the evaluation in a
+nested<a class="footnote-reference" href="#id9" id="id5">[4]</a> Horner scheme; we did not make any attempt to optimise the
+evaluation beyond this. Furthermore, we obtain the polynomial <em>partial
+derivative</em> <span class="math notranslate nohighlight">\(\partial y/\partial x\)</span> simultaneously for the
+(inverse) convergence, making the overall scheme efficient.</p>
+<p>To generate the Cython <a class="reference internal" href="rayXpandaAPI.html#module-rayXpanda.inversion" title="rayXpanda.inversion"><code class="xref py py-mod docutils literal notranslate"><span class="pre">inversion</span></code></a> extension module, it was necessary
+to reverse the polynomial to obtain a polynomial for <span class="math notranslate nohighlight">\(x(y;u)\)</span>. Series
+reversion requires a larger number of terms in powers of <span class="math notranslate nohighlight">\(y\)</span> to recover
+the accuracy of the <span class="math notranslate nohighlight">\(y(x;u)\)</span> polynomial truncated at
+<span class="math notranslate nohighlight">\(\mathcal{O}(x^{31})\)</span>. We push the computation to
+<span class="math notranslate nohighlight">\(\mathcal{O}(y^{61})\)</span>.</p>
+<p>Both extension modules are statically typed at <code class="docutils literal notranslate"><span class="pre">double</span></code> precision: the
+coefficients of the polynomials in <span class="math notranslate nohighlight">\(u\)</span> are truncated at this precision
+but are represented symbolically as a ratio of very large integers that
+require many more bits to represent. The function that we automatically
+generated for the reversed series <span class="math notranslate nohighlight">\(x(y;u)\)</span> is <span class="math notranslate nohighlight">\(\sim\!1700\)</span> lines
+long, with an average of a little less than two floating point operations per
+line. Very roughly, on a GHz processor, this amounts to
+<span class="math notranslate nohighlight">\(\mathcal{O}(10^{3})\)</span> ns execution time.</p>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<p>We now compare the truncation error to that exhibited by <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>.
+We call routines from the <a class="reference external" href="https://github.com/ThomasEdwardRiley/xpsi">xpsi</a> package to compute the ray properties via
+numerical quadrature.</p>
+<div class="figure" id="id11" style="width: 100%">
+<img alt="_images/primary_image_performance.png" src="_images/primary_image_performance.png" />
+<p class="caption"><span class="caption-text">Truncation error comparison.
+The behaviour and error exhibited by
+<a class="reference internal" href="rayXpandaAPI.html#rayXpanda.inversion.invert" title="rayXpanda.inversion.invert"><code class="xref py py-func docutils literal notranslate"><span class="pre">invert()</span></code></a> is delineated by the <strong>solid</strong> lines. The error
+exhibited by the <a class="reference internal" href="rayXpandaAPI.html#rayXpanda.deflection.deflect" title="rayXpanda.deflection.deflect"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect()</span></code></a> is delineated by the
+<strong>dotted</strong> lines (not labelled in the legend); these lines follow the
+exact relations very closely.
+The behavior and error of the <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> relation is delineated
+by the <strong>dash-dot</strong> lines. The exact relations are delineated in the top
+panels by the <strong>dashed</strong> lines. The error <span class="math notranslate nohighlight">\(|\varepsilon|\)</span> is the
+fractional error.</span></p>
+</div>
+<p>The fractional error <span class="math notranslate nohighlight">\(\varepsilon\)</span> is defined according to the relation
+whose truncation error we are interested in. The exact ray properties
+computed via numerical quadrature were generated for an
+array of <span class="math notranslate nohighlight">\(\cos\alpha\)</span> values, yielding deflections. For approximative
+<em>inverse</em> relations such as <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>, we calculate
+<span class="math notranslate nohighlight">\(\tilde{\alpha}\)</span> given those exact deflections, and define
+<span class="math notranslate nohighlight">\(\varepsilon=|\alpha - \tilde{\alpha}|/\alpha\)</span>. For the
+<a class="reference internal" href="rayXpandaAPI.html#rayXpanda.deflection.deflect" title="rayXpanda.deflection.deflect"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect()</span></code></a> module we compute <span class="math notranslate nohighlight">\(\tilde{\psi}\)</span> and define
+<span class="math notranslate nohighlight">\(\varepsilon=|\psi - \tilde{\psi}|/\psi\)</span>.</p>
+<p>However, for the derivative <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, the error is
+<span class="math notranslate nohighlight">\(\varepsilon=|\mathcal{D} - \tilde{\mathcal{D}}|/\mathcal{D}\)</span>. The
+<code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> error curves—one for <a class="reference internal" href="rayXpandaAPI.html#rayXpanda.deflection.deflect" title="rayXpanda.deflection.deflect"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect()</span></code></a>, and one
+for <a class="reference internal" href="rayXpandaAPI.html#rayXpanda.inversion.invert" title="rayXpanda.inversion.invert"><code class="xref py py-func docutils literal notranslate"><span class="pre">invert()</span></code></a>—pertaining to <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> thus
+visibly converge with increasing <span class="math notranslate nohighlight">\(\cos\alpha\)</span>.</p>
+<p>The addition of the logarithmic term by Poutanen (2019) has the effect
+that in the limit <span class="math notranslate nohighlight">\(y\to2^{-}\)</span>, <span class="math notranslate nohighlight">\(x_{P19}\to\infty\)</span>, forcing
+the relation <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> to cross the exact relation. The
+convergence also diverges. The <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> relation is more accurate in this
+limit, and for most of the deflection domain <span class="math notranslate nohighlight">\(\cos\psi\in[-1,1]\)</span>.
+However, the <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> performs better for
+<span class="math notranslate nohighlight">\(\cos\psi\lesssim-0.9\)</span>, until the <span class="math notranslate nohighlight">\(\cos\psi\to-1\)</span> limit. The
+accuracy of <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> relative to <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> is a function of
+<span class="math notranslate nohighlight">\(u\)</span>.</p>
+<div class="figure" id="id12" style="width: 100%">
+<img alt="_images/spherical_star_performance.png" src="_images/spherical_star_performance.png" />
+<p class="caption"><span class="caption-text">Truncation error comparison, for a spherical star.
+The behaviour and error exhibited by
+<a class="reference internal" href="rayXpandaAPI.html#rayXpanda.inversion.invert" title="rayXpanda.inversion.invert"><code class="xref py py-func docutils literal notranslate"><span class="pre">invert()</span></code></a> is delineated by the <strong>solid</strong> lines. The error
+exhibited by <a class="reference internal" href="rayXpandaAPI.html#rayXpanda.deflection.deflect" title="rayXpanda.deflection.deflect"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect()</span></code></a> is delineated by the <strong>dotted</strong>
+lines in the lower panels.
+The behavior and error of the <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> relation is delineated
+by the <strong>dash-dot</strong> lines. The exact relations are delineated in the top
+panels by the <strong>dashed</strong> lines. The error <span class="math notranslate nohighlight">\(|\varepsilon|\)</span> is the
+fractional error.</span></p>
+</div>
+<p>For a spherical star, <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> is effectively always more accurate (still
+considering primary images only) apart from where the <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>
+relation cross the exact relation. The accuracies become very comparable
+for more compact stars when <span class="math notranslate nohighlight">\(\cos\psi\to-1\)</span> for <span class="math notranslate nohighlight">\(\cos\alpha&gt;0\)</span>.</p>
+<p>An important consideration when benchmarking performance is evaluation time.
+A call from a compiled program to a compiled function <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>
+is estimated to require <span class="math notranslate nohighlight">\(\mathcal{O}(10^{1})\)</span> ns. A call to the compiled
+shared objects of <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> is estimated to require
+<span class="math notranslate nohighlight">\(\mathcal{O}(10^{3})\)</span> ns. However, if one is calling such functions via
+a Python extension module, the overhead dominates the processor time to
+evaluated <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>, resulting in an evaluation time of
+<span class="math notranslate nohighlight">\(\mathcal{O}(10^{3})\)</span> ns. Therefore, when called from a Python program,
+the expense is almost commensurate per ray. Ideally, however, one would make
+far fewer calls through the Python/C API than ray evaluations—for instance,
+by using vectorised functions such as <a class="reference internal" href="rayXpandaAPI.html#rayXpanda.deflection.deflect_vec" title="rayXpanda.deflection.deflect_vec"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect_vec()</span></code></a>
+and <a class="reference internal" href="rayXpandaAPI.html#rayXpanda.inversion.invert_vec" title="rayXpanda.inversion.invert_vec"><code class="xref py py-func docutils literal notranslate"><span class="pre">invert_vec()</span></code></a>. A loop over rays in an extension is
+a likely context, and in this case <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> is more expensive than
+a low-level implementation of <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>.</p>
+</div>
+<div class="section" id="future-development">
+<h2>Future development<a class="headerlink" href="#future-development" title="Permalink to this headline">¶</a></h2>
+<p>The current version of <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> only treats the ray deflection as a
+function of the local ray angle (including the derivative for the convergence
+property). Possible extensions include treatment of the lag—relative to a
+radial ray—via an expansion. However, for various applications such as
+neutron star pulse-profile modelling, the gravitational delay makes a much
+smaller contribution to signal calculation, and the importance decays with spin
+frequency.</p>
+<p>One could also devise an improvement for rays characterised by
+<span class="math notranslate nohighlight">\(\cos\alpha&lt;0\)</span>. The integral <a class="reference internal" href="#equation">equation</a> given above involving
+Heaviside function is suggestive of the same expansion being applicable.
+However, <em>one</em> difficulty is additional dependence on <span class="math notranslate nohighlight">\(\cos\alpha\)</span>
+because the lower limit of the integral is <span class="math notranslate nohighlight">\(r_{c}(b)\)</span> instead of
+<span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> also only considers primary images, and it remains unclear if
+there is any viable expansion approach to approximate the properties of
+higher-order images.</p>
+<p>Finally, an obvious way to improve accuracy is to push the expansion and
+reversion orders higher, whilst paying attention to precision loss due to
+number representation and operation inadequacies, and to the total number of
+floating point operations.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In units of the gravitational radius: <span class="math notranslate nohighlight">\(r_{c}(b)=\frac{2b}{\sqrt{3}}\cos\left[\frac{1}{3}\tan^{-1}\sqrt{\frac{b^{2}}{27} - 1} - \frac{\pi}{3}\right]\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> is also in units of the gravitational radius.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>In the absence of opaque surfaces that obscure images, as is the case
+for a neutron star.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>We applied <a class="reference external" href="https://docs.sympy.org/latest">sympy</a>, both for series expansion and reversion, and
+integration.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>Meaning that the coefficients of the polynomial in <span class="math notranslate nohighlight">\(x\)</span>, which
+are polynomials themselves in <span class="math notranslate nohighlight">\(u\)</span> are also evaluated using a
+single-variable Horner scheme. Subsequent coefficient evaluations are
+interleaved with the topmost Horner scheme that organises the evaluation
+with respect to <span class="math notranslate nohighlight">\(x\)</span>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="rayXpanda" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Thomas E. Riley
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
