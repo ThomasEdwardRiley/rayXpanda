@@ -1,0 +1,15 @@
+.*.swp
+
+*.so
+*.pyc
+dist
+
+*.gz
+*.tar
+*.zip
+
+*.c
+*.h
+
+docs/
+*.egg
