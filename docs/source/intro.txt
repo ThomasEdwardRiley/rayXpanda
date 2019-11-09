@@ -24,7 +24,7 @@ Run the ``setup.py`` script::
 
 You require Cython_ to compile to C, and then the extensions will be compiled.
 For example, set ``CC=gcc`` for GNU or ``CC=icc`` for Intel, depending on
-your system.
+your preferences and system.
 
 .. _Cython: http://cython.readthedocs.io/en/latest
 
