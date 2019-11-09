@@ -14,6 +14,8 @@ routines can be called directly by a given application in place of calls to
 other library functions for null geodesic computation.
 
 
+Read the docs `here <https://thomasedwardriley.github.io/rayXpanda/>`_.
+
 Install
 =======
 
