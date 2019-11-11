@@ -25,7 +25,9 @@
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "math|output_area", "processEscapes": true, "ignoreClass": "document", "inlineMath": [["$", "$"], ["\\(", "\\)"]]}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -172,23 +174,13 @@
     margin-top: -19px;
 }
 
-/* nice headers on first paragraph of info/warning boxes */
-.admonition .first {
-    margin: -12px;
-    padding: 6px 12px;
-    margin-bottom: 12px;
-    color: #fff;
-    line-height: 1;
-    display: block;
-}
-.admonition.warning .first {
-    background: #f0b37e;
-}
-.admonition.note .first {
-    background: #6ab0de;
-}
 .admonition > p:before {
     margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
 }
 </style>
 <div class="section" id="module-rayXpanda.deflection">
@@ -250,7 +242,7 @@
 <dl class="function">
 <dt id="rayXpanda.deflection.deflect_vec">
 <code class="descclassname">rayXpanda.deflection.</code><code class="descname">deflect_vec</code><span class="sig-paren">(</span><em>__Pyx_memviewslice cos_alpha</em>, <em>double u</em><span class="sig-paren">)</span><a class="headerlink" href="#rayXpanda.deflection.deflect_vec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vectorised version of <a class="reference internal" href="#rayXpanda.deflection.deflect" title="rayXpanda.deflection.deflect"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect()</span></code></a>.</p>
+<dd><p>Vectorised variant of <a class="reference internal" href="#rayXpanda.deflection.deflect" title="rayXpanda.deflection.deflect"><code class="xref py py-func docutils literal notranslate"><span class="pre">deflect()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -278,7 +270,7 @@ returned having been transformed according to
 <dl class="function">
 <dt id="rayXpanda.inversion.invert_vec">
 <code class="descclassname">rayXpanda.inversion.</code><code class="descname">invert_vec</code><span class="sig-paren">(</span><em>__Pyx_memviewslice cos_psi</em>, <em>double u</em><span class="sig-paren">)</span><a class="headerlink" href="#rayXpanda.inversion.invert_vec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vectorised version of <a class="reference internal" href="#rayXpanda.inversion.invert" title="rayXpanda.inversion.invert"><code class="xref py py-func docutils literal notranslate"><span class="pre">invert()</span></code></a>.</p>
+<dd><p>Vectorised variant of <a class="reference internal" href="#rayXpanda.inversion.invert" title="rayXpanda.inversion.invert"><code class="xref py py-func docutils literal notranslate"><span class="pre">invert()</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

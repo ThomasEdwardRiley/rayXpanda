@@ -42,10 +42,9 @@ series expansion :math:`y(x;u)` *vanishes*, leading to a useful linear relation
 
     y(x;u) = \frac{x}{1-u}+\mathcal{O}(x^{3}),
 
-where :math:`u\mathrel{:=}r_{s}/R`. Note that integrand factor that is
-expanded, :math:`x` appears via :math:`\sin\alpha`: although :math:`x\in[0,2]`,
-the combination :math:`\sin\alpha=\sqrt{x(2-x)}\in[0,1]`, and the expansion
-with respect to :math:`x` is possible due to the *small* function of :math:`x`.
+where :math:`u\mathrel{:=}r_{s}/R`. Note that in the integrand :math:`x`
+appears via :math:`\sin\alpha`, and this function of :math:`x` has range equal
+to the unit interval.\ [#]_
 Also note that due to consideration of :math:`\cos\psi`, the exact function
 :math:`y(x;u)`, for domain :math:`x\in[0,2]`, is non-injective. The extrema
 in :math:`y(x;u)` denote transitions, with increasing :math:`x`, to subdomains
@@ -301,6 +300,14 @@ floating point operations.
 .. rubric:: Footnotes
 
 .. [#] In units of the gravitational radius: :math:`r_{c}(b)=\frac{2b}{\sqrt{3}}\cos\left[\frac{1}{3}\tan^{-1}\sqrt{\frac{b^{2}}{27} - 1} - \frac{\pi}{3}\right]`, where :math:`b` is also in units of the gravitational radius.
+
+.. [#] Note that for :math:`\cos\alpha<0`, :math:`x\in[1,2]`, but
+       the combination :math:`\sin\alpha=\sqrt{x(2-x)}\in[0,1]` remains. The
+       expansion with respect to :math:`x` would thus be possible in principle
+       due to the *small* function of :math:`x`. The integral must however
+       be rewritten in an `alternate form`__.
+
+__ equation_
 
 .. [#] In the absence of opaque surfaces that obscure images, as is the case
        for a neutron star.

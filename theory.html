@@ -25,7 +25,9 @@
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "math|output_area", "processEscapes": true, "ignoreClass": "document", "inlineMath": [["$", "$"], ["\\(", "\\)"]]}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -173,23 +175,13 @@
     margin-top: -19px;
 }
 
-/* nice headers on first paragraph of info/warning boxes */
-.admonition .first {
-    margin: -12px;
-    padding: 6px 12px;
-    margin-bottom: 12px;
-    color: #fff;
-    line-height: 1;
-    display: block;
-}
-.admonition.warning .first {
-    background: #f0b37e;
-}
-.admonition.note .first {
-    background: #6ab0de;
-}
 .admonition > p:before {
     margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
 }
 </style>
 <div class="section" id="theory">
@@ -213,20 +205,19 @@ the purpose of approximation design.</p>
 are approached via numerical quadrature with a variable transformation
 to make the integral domain compact and remove the integrand divergence as
 <span class="math notranslate nohighlight">\(r\to r_{c}^{+}\)</span>, where <span class="math notranslate nohighlight">\(r_{c}&gt;3r_{s}/2\)</span> is the turning point
-<span class="math notranslate nohighlight">\(dr/d\lambda=0\)</span> of a scattering ray, and is <span class="math notranslate nohighlight">\(r_{c}=r_{c}(b)\)</span>.<a class="footnote-reference" href="#id6" id="id2">[1]</a></p>
+<span class="math notranslate nohighlight">\(dr/d\lambda=0\)</span> of a scattering ray, and is <span class="math notranslate nohighlight">\(r_{c}=r_{c}(b)\)</span>.<a class="footnote-reference" href="#id7" id="id2">[1]</a></p>
 <p>However, <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002ApJ...566L..85B/abstract">Beloborodov (2002)</a> showed that if one lets <span class="math notranslate nohighlight">\(y=1-\cos\psi\)</span> and
 <span class="math notranslate nohighlight">\(x=1-\cos\alpha\)</span>, then the <span class="math notranslate nohighlight">\(\mathcal{O}(x^{2})\)</span> term of the
 series expansion <span class="math notranslate nohighlight">\(y(x;u)\)</span> <em>vanishes</em>, leading to a useful linear relation</p>
 <div class="math notranslate nohighlight">
 \[y(x;u) = \frac{x}{1-u}+\mathcal{O}(x^{3}),\]</div>
-<p>where <span class="math notranslate nohighlight">\(u\mathrel{:=}r_{s}/R\)</span>. Note that integrand factor that is
-expanded, <span class="math notranslate nohighlight">\(x\)</span> appears via <span class="math notranslate nohighlight">\(\sin\alpha\)</span>: although <span class="math notranslate nohighlight">\(x\in[0,2]\)</span>,
-the combination <span class="math notranslate nohighlight">\(\sin\alpha=\sqrt{x(2-x)}\in[0,1]\)</span>, and the expansion
-with respect to <span class="math notranslate nohighlight">\(x\)</span> is possible due to the <em>small</em> function of <span class="math notranslate nohighlight">\(x\)</span>.
+<p>where <span class="math notranslate nohighlight">\(u\mathrel{:=}r_{s}/R\)</span>. Note that in the integrand <span class="math notranslate nohighlight">\(x\)</span>
+appears via <span class="math notranslate nohighlight">\(\sin\alpha\)</span>, and this function of <span class="math notranslate nohighlight">\(x\)</span> has range equal
+to the unit interval.<a class="footnote-reference" href="#id8" id="id3">[2]</a>
 Also note that due to consideration of <span class="math notranslate nohighlight">\(\cos\psi\)</span>, the exact function
 <span class="math notranslate nohighlight">\(y(x;u)\)</span>, for domain <span class="math notranslate nohighlight">\(x\in[0,2]\)</span>, is non-injective. The extrema
 in <span class="math notranslate nohighlight">\(y(x;u)\)</span> denote transitions, with increasing <span class="math notranslate nohighlight">\(x\)</span>, to subdomains
-that add<a class="footnote-reference" href="#id7" id="id3">[2]</a> an image—i.e., another ray bundle connecting neighbourhoods of
+that add<a class="footnote-reference" href="#id10" id="id4">[3]</a> an image—i.e., another ray bundle connecting neighbourhoods of
 two points in space with principal angular separation <span class="math notranslate nohighlight">\(\psi\in[0,\pi]\)</span>.
 The integral given above is valid for <span class="math notranslate nohighlight">\(\alpha\leq\pi/2\)</span>, but the
 Beloborodov (2002) series truncation is valid for the set
@@ -242,7 +233,7 @@ exact function is given by</p>
                  &amp;\qquad + (-1)^{\Theta\left(\alpha - \frac{\pi}{2}\right)}b\mathop{\int}_{R}^{\infty}\frac{dr}{r^{2}}\left[1 - \frac{b^{2}}{r^{2}}\left(1-\frac{r_{s}}{r}\right)\right]^{-1/2},
 \end{aligned}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\Theta(\ldots)\)</span> denotes the Heaviside function.</p>
-<div class="figure" id="id10" style="width: 100%">
+<div class="figure" id="id13" style="width: 100%">
 <img alt="_images/exact_relations.png" src="_images/exact_relations.png" />
 <p class="caption"><span class="caption-text">Exact deflection relations computed using numerical integration routines
 from the <a class="reference external" href="https://github.com/ThomasEdwardRiley/xpsi">xpsi</a> package.</span></p>
@@ -303,7 +294,7 @@ slightly higher computational expense. The orthogonality however, means that
 implementations that call numerical integrators and interpolators.</p>
 <p>To achieve this aim, the extension modules supplied by <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> were
 generated as follows. First we pursued the higher-order expansion terms given
-by Beloborodov (2002) and verified them. We then proceeded symbolically<a class="footnote-reference" href="#id8" id="id4">[3]</a>
+by Beloborodov (2002) and verified them. We then proceeded symbolically<a class="footnote-reference" href="#id11" id="id5">[4]</a>
 to generate terms up to <span class="math notranslate nohighlight">\(\mathcal{O}(x^{31})\)</span>. The resulting polynomial
 in <span class="math notranslate nohighlight">\(x\)</span> has clear pattern in the structure of the coefficients, which are
 themselves polynomials in <span class="math notranslate nohighlight">\(u\)</span>, where the order scales with the
@@ -322,7 +313,7 @@ yields</p>
 <p>The polynomial in <span class="math notranslate nohighlight">\(x\)</span> requires almost <span class="math notranslate nohighlight">\(10^{3}\)</span> floating
 point operations to evaluate. We generated the Cython <a class="reference internal" href="rayXpandaAPI.html#module-rayXpanda.deflection" title="rayXpanda.deflection"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deflection</span></code></a>
 extension module using a Python script, organising the evaluation in a
-nested<a class="footnote-reference" href="#id9" id="id5">[4]</a> Horner scheme; we did not make any attempt to optimise the
+nested<a class="footnote-reference" href="#id12" id="id6">[5]</a> Horner scheme; we did not make any attempt to optimise the
 evaluation beyond this. Furthermore, we obtain the polynomial <em>partial
 derivative</em> <span class="math notranslate nohighlight">\(\partial y/\partial x\)</span> simultaneously for the
 (inverse) convergence, making the overall scheme efficient.</p>
@@ -346,7 +337,7 @@ line. Very roughly, on a GHz processor, this amounts to
 <p>We now compare the truncation error to that exhibited by <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span>.
 We call routines from the <a class="reference external" href="https://github.com/ThomasEdwardRiley/xpsi">xpsi</a> package to compute the ray properties via
 numerical quadrature.</p>
-<div class="figure" id="id11" style="width: 100%">
+<div class="figure" id="id14" style="width: 100%">
 <img alt="_images/primary_image_performance.png" src="_images/primary_image_performance.png" />
 <p class="caption"><span class="caption-text">Truncation error comparison.
 The behaviour and error exhibited by
@@ -382,7 +373,7 @@ However, the <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> 
 <span class="math notranslate nohighlight">\(\cos\psi\lesssim-0.9\)</span>, until the <span class="math notranslate nohighlight">\(\cos\psi\to-1\)</span> limit. The
 accuracy of <code class="docutils literal notranslate"><span class="pre">rayXpanda</span></code> relative to <span class="math notranslate nohighlight">\(x_{P19}(y;u)\)</span> is a function of
 <span class="math notranslate nohighlight">\(u\)</span>.</p>
-<div class="figure" id="id12" style="width: 100%">
+<div class="figure" id="id15" style="width: 100%">
 <img alt="_images/spherical_star_performance.png" src="_images/spherical_star_performance.png" />
 <p class="caption"><span class="caption-text">Truncation error comparison, for a spherical star.
 The behaviour and error exhibited by
@@ -436,30 +427,40 @@ reversion orders higher, whilst paying attention to precision loss due to
 number representation and operation inadequacies, and to the total number of
 floating point operations.</p>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
+<table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In units of the gravitational radius: <span class="math notranslate nohighlight">\(r_{c}(b)=\frac{2b}{\sqrt{3}}\cos\left[\frac{1}{3}\tan^{-1}\sqrt{\frac{b^{2}}{27} - 1} - \frac{\pi}{3}\right]\)</span>, where <span class="math notranslate nohighlight">\(b\)</span> is also in units of the gravitational radius.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>In the absence of opaque surfaces that obscure images, as is the case
-for a neutron star.</td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>We applied <a class="reference external" href="https://docs.sympy.org/latest">sympy</a>, both for series expansion and reversion, and
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Note that for <span class="math notranslate nohighlight">\(\cos\alpha&lt;0\)</span>, <span class="math notranslate nohighlight">\(x\in[1,2]\)</span>, but
+the combination <span class="math notranslate nohighlight">\(\sin\alpha=\sqrt{x(2-x)}\in[0,1]\)</span> remains. The
+expansion with respect to <span class="math notranslate nohighlight">\(x\)</span> would thus be possible in principle
+due to the <em>small</em> function of <span class="math notranslate nohighlight">\(x\)</span>. The integral must however
+be rewritten in an <a class="reference internal" href="#equation">alternate form</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>In the absence of opaque surfaces that obscure images, as is the case
+for a neutron star.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>We applied <a class="reference external" href="https://docs.sympy.org/latest">sympy</a>, both for series expansion and reversion, and
 integration.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
+<table class="docutils footnote" frame="void" id="id12" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[4]</a></td><td>Meaning that the coefficients of the polynomial in <span class="math notranslate nohighlight">\(x\)</span>, which
+<tr><td class="label"><a class="fn-backref" href="#id6">[5]</a></td><td>Meaning that the coefficients of the polynomial in <span class="math notranslate nohighlight">\(x\)</span>, which
 are polynomials themselves in <span class="math notranslate nohighlight">\(u\)</span> are also evaluated using a
 single-variable Horner scheme. Subsequent coefficient evaluations are
 interleaved with the topmost Horner scheme that organises the evaluation
